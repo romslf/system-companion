@@ -42,8 +42,9 @@
           <div class="name">
                 Sort by:
             <v-radio-group v-model="radio" row>
-              <v-radio label="CPU" value="radio-1"></v-radio>
-              <v-radio label="MEM" value="radio-2"></v-radio>
+              <v-radio label="CPU" value="cpu"></v-radio>
+              <v-radio label="MEM" value="mem"></v-radio>
+              <v-radio label="Name" value="name"></v-radio>
             </v-radio-group>
           </div>
         </div>
@@ -103,10 +104,16 @@ export default {
       for (let pro of data.list) {
         this.process.push(pro)
       }
-      if (this.radio === "radio-1") {
+      if (this.radio === "cpu") {
         this.process.sort(function(a, b){return b.pcpu - a.pcpu})
-      } else {
+      } else if (this.radio === "mem") {
         this.process.sort(function(a, b){return b.pmem - a.pmem})
+      } else {
+        this.process.sort(function(a, b){
+          if(a.name < b.name) { return -1; }
+          if(a.name > b.name) { return 1; }
+          return 0;
+        })
       }
       data = await currentLoad();
       this.avgLoad = data.avgload

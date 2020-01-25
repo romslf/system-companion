@@ -1,6 +1,6 @@
 {
   "name": "system-companion",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Multi platform system informations tool.",
   "main": "./dist/main/index.js",
   "scripts": {
