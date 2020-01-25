@@ -42,7 +42,7 @@ const macOS = {
 }
 
 module.exports = {
-  asar: true,
+  asar: false,
   productName: 'System Companion',
   appId: 'com.github.romslf.system-companion',
   artifactName: 'sc-${version}.${ext}',

@@ -89,7 +89,7 @@ const { currentLoad, processes } = require('systeminformation')
 export default {
   data () {
     return {
-      radio: "radio-1",
+      radio: "name",
       avgLoad: 0,
       idleLoad: 0,
       currentLoad: 0,
