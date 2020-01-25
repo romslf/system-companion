@@ -1,6 +1,6 @@
 # ProjectG
 
-> An electron-nuxt project made by rolaforg <rolaforg@student.le-101.fr> & csapt <csapt@student.le-101.fr>
+> An electron-nuxt project made by rolaforg <rolaforg@student.le-101.fr>
 
 #### Build Setup
 
