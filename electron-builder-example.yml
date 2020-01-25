@@ -1,0 +1,4 @@
+appId: com.github.romslf.system-companion
+publish:
+  provider: github
+  token: [YOUR GITHUB ACCESS TOKEN]

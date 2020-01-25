@@ -1,7 +1,5 @@
 /* globals INCLUDE_RESOURCES_PATH */
 import { app } from 'electron'
-const { autoUpdater } = require("electron-updater")
-autoUpdater.checkForUpdatesAndNotify()
 
 /**
  * Set `__resources` path to resources files in renderer process

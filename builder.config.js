@@ -44,7 +44,7 @@ const macOS = {
 module.exports = {
   asar: true,
   productName: 'System Companion',
-  appId: 'com.rolaforg.projectg',
+  appId: 'com.github.romslf.system-companion',
   artifactName: 'sc-${version}.${ext}',
   directories: {
     output: 'build'

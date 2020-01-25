@@ -1,11 +1,12 @@
 {
   "name": "system-companion",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Multi platform system informations tool.",
   "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "build": "cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
+    "deploy": "electron-builder build --publish always",
     "test": "",
     "postinstall": "electron-builder --all install-app-deps "
   },
