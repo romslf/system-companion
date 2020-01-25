@@ -21,6 +21,12 @@
   "engines": {
     "node": ">=8.10.0"
   },
+  "build": {
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ]
+  },
   "devDependencies": {
     "@xpda-dev/core": "^0.1.5",
     "@xpda-dev/electron-launcher": "^0.1.1",
