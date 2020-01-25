@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import { BrowserWindow, app } from 'electron'
+import { BrowserWindow, dialog, app } from 'electron'
 import {autoUpdater} from 'electron-updater'
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -15,37 +15,48 @@ export default class BrowserWinHandler {
     this.browserWindow = null
     this._createInstance()
   }
+  
 
   _createInstance () {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
-    autoUpdater.on('checking-for-update', () => {
-      console.log("1")
-    })
+    const options = {
+      type: 'question',
+      buttons: ['Cancel', 'Yes, please', 'No, thanks'],
+      defaultId: 2,
+      title: 'Question',
+      message: 'Do you want to do this?'
+    };
+  
+    // autoUpdater.on('checking-for-update', () => {
+    // })
+    // autoUpdater.on('download-progress', (ev, progressObj) => {
+    //   console.log("5")
+    // })
+
     autoUpdater.on('update-available', (ev, info) => {
-      console.log("2")
-    })
-    autoUpdater.on('update-not-available', (ev, info) => {
-      console.log("3")
-    })
-    autoUpdater.on('error', (ev, err) => {
-      console.log("4")
-    })
-    autoUpdater.on('download-progress', (ev, progressObj) => {
-      console.log("5")
-    })
-    autoUpdater.on('update-downloaded', (ev, info) => {
-      // Wait 5 seconds, then quit and install
-      // In your application, you don't need to wait 5 seconds.
-      // You could call autoUpdater.quitAndInstall(); immediately
-      console.log("6")
-      autoUpdater.quitAndInstall();  
+      options.title = "Update available"
+      options.message = "Update available, download it ?"
+      dialog.showMessageBox(null, options, (response) => {
+        if (response === 1) {
+          autoUpdater.on('update-downloaded', (ev, info) => {
+            autoUpdater.quitAndInstall();  
+          })
+        }
+      });
     })
     
+    autoUpdater.on('error', (ev, err) => {
+      options.title = 'Error',
+      options.message = err
+      dialog.showMessageBox(null, options, (response) => {
+        console.log(response);
+      });
+    })
+     
     app.on('ready', () => {
       this._create()
-      console.log("0")
       autoUpdater.checkForUpdates()
     })
 
