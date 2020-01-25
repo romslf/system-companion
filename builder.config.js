@@ -11,7 +11,7 @@ const windowsOS = {
     oneClick: false,
     differentialPackage: true,
     createDesktopShortcut: true,
-    allowToChangeInstallationDirectory: true
+    allowToChangeInstallationDirectory: false
   }
 }
 

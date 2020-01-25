@@ -8,7 +8,7 @@
 module.exports = {
   mode: 'spa', // or 'universal'
   head: {
-    title: 'projectgnuxt'
+    title: 'System Companion'
   },
   loading: false,
   plugins: [

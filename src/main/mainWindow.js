@@ -9,7 +9,6 @@ const winHandler = new BrowserWinHandler({
   width: 1000,
   height: 1000
 })
-
 winHandler.onCreated(browserWindow => {
   if (isDev) browserWindow.loadURL(DEV_SERVER_URL)
   else browserWindow.loadFile(INDEX_PATH)

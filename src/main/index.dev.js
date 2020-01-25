@@ -4,7 +4,6 @@ import vueDevtools from 'vue-devtools'
 import { ELECTRON_RELAUNCH_CODE } from '../../.electron-nuxt/config'
 import mainWinHandler from './mainWindow'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
-
 electronDebug({
   showDevTools: false,
   devToolsMode: 'right'
@@ -12,16 +11,6 @@ electronDebug({
 
 app.on('ready', () => {
   vueDevtools.install()
-  const menu = Menu.getApplicationMenu()
-  const refreshButton = new MenuItem({
-    label: 'Relaunch electron',
-    accelerator: 'CommandOrControl+E',
-    click: () => {
-      app.exit(ELECTRON_RELAUNCH_CODE)
-    }
-  })
-  menu.append(refreshButton)
-  Menu.setApplicationMenu(menu)
 })
 
 mainWinHandler.onCreated(browserWindow => {

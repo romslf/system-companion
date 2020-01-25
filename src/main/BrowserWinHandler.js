@@ -1,62 +1,65 @@
 import { EventEmitter } from 'events'
-import { BrowserWindow, dialog, app } from 'electron'
-import {autoUpdater} from 'electron-updater'
+import { BrowserWindow, dialog, app, Menu } from 'electron'
+import { autoUpdater } from 'electron-updater'
 const isProduction = process.env.NODE_ENV === 'production'
+Menu.setApplicationMenu(null)
 
 export default class BrowserWinHandler {
   /**
      * @param [options] {object} - browser window options
      * @param [allowRecreate] {boolean}
      */
-  constructor (options, allowRecreate = true) {
+  constructor(options, allowRecreate = true) {
     this._eventEmitter = new EventEmitter()
     this.allowRecreate = allowRecreate
     this.options = options
     this.browserWindow = null
     this._createInstance()
   }
-  
 
-  _createInstance () {
-    // This method will be called when Electron has finished
-    // initialization and is ready to create browser windows.
-    // Some APIs can only be used after this event occurs.
+  _createInstance() {
     const options = {
       type: 'question',
-      buttons: ['Cancel', 'Yes, please', 'No, thanks'],
-      defaultId: 2,
+      buttons: ['No, thanks', 'Yes, please'],
+      defaultId: 1,
       title: 'Question',
       message: 'Do you want to do this?'
     };
-  
-    // autoUpdater.on('checking-for-update', () => {
-    // })
-    // autoUpdater.on('download-progress', (ev, progressObj) => {
-    //   console.log("5")
-    // })
 
-    autoUpdater.on('update-available', (ev, info) => {
-      options.title = "Update available"
-      options.message = "Update available, download it ?"
-      dialog.showMessageBox(null, options, (response) => {
-        if (response === 1) {
-          autoUpdater.on('update-downloaded', (ev, info) => {
-            autoUpdater.quitAndInstall();  
-          })
-        }
-      });
+    autoUpdater.on('update-available', () => {
+      if (process.platform === 'win32' || process.platform === 'win64') {
+        options.title = "Update"
+        options.message = "Update available, download it ?"
+        dialog.showMessageBox(null, options, (response) => {
+          if (response === 1) {
+            autoUpdater.downloadUpdate()
+            autoUpdater.on('update-downloaded', () => {
+              autoUpdater.quitAndInstall();
+            })
+          }
+        });
+      } else {
+        options.title = "Update"
+        options.message = "Update available, download it ?"
+        dialog.showMessageBox(null, options, (response) => {
+          if (response === 1) {
+            let child = new BrowserWindow({ modal: false, show: false })
+            child.loadURL('https://github.com/romslf/system-companion/releases/latest')
+            child.once('ready-to-show', () => {
+              child.show()
+            })
+          }
+        });
+      }
     })
-    
-    autoUpdater.on('error', (ev, err) => {
-      options.title = 'Error',
-      options.message = err
-      dialog.showMessageBox(null, options, (response) => {
-        console.log(response);
-      });
+
+    autoUpdater.on('error', (err) => {
+      console.log(err);
     })
-     
+
     app.on('ready', () => {
       this._create()
+      autoUpdater.autoDownload = false
       autoUpdater.checkForUpdates()
     })
 
@@ -66,7 +69,7 @@ export default class BrowserWinHandler {
     app.on('activate', () => this._recreate())
   }
 
-  _create () {
+  _create() {
     this.browserWindow = new BrowserWindow(
       {
         ...this.options,
@@ -74,7 +77,7 @@ export default class BrowserWinHandler {
           ...this.options.webPreferences,
           webSecurity: isProduction, // disable on dev to allow loading local resources
           nodeIntegration: true, // allow loading modules via the require () function
-          devTools: !process.env.SPECTRON // disable on e2e test environment
+          devTools: !isProduction // disable on e2e test environment
         }
       }
     )
@@ -85,7 +88,7 @@ export default class BrowserWinHandler {
     this._eventEmitter.emit('created')
   }
 
-  _recreate () {
+  _recreate() {
     if (this.browserWindow === null) this._create()
   }
 
@@ -98,7 +101,7 @@ export default class BrowserWinHandler {
      *
      * @param callback {onReadyCallback}
      */
-  onCreated (callback) {
+  onCreated(callback) {
     this._eventEmitter.once('created', () => {
       callback(this.browserWindow)
     })
@@ -108,7 +111,7 @@ export default class BrowserWinHandler {
      *
      * @returns {Promise<BrowserWindow>}
      */
-  created () {
+  created() {
     return new Promise(resolve => {
       this._eventEmitter.once('created', () => {
         resolve(this.browserWindow)

@@ -1,4 +1,4 @@
-# ProjectG
+# System Companion
 
 > An electron-nuxt project made by rolaforg <rolaforg@student.le-101.fr>
 
