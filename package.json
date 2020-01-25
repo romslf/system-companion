@@ -5,8 +5,7 @@
   "main": "./dist/main/index.js",
   "scripts": {
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
-    "build": "cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
-    "deploy": "electron-builder build --publish always",
+    "build": "cross-env-shell NODE_ENV=production && node .electron-nuxt/index.js",
     "test": "",
     "postinstall": "electron-builder --all install-app-deps "
   },
@@ -20,12 +19,6 @@
   },
   "engines": {
     "node": ">=8.10.0"
-  },
-  "build": {
-    "files": [
-      "dist/**/*",
-      "package.json"
-    ]
   },
   "devDependencies": {
     "@xpda-dev/core": "^0.1.5",

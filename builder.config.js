@@ -4,11 +4,14 @@ const windowsOS = {
   win: {
     icon: ICONS_DIR + 'win-icon.ico',
     publisherName: 'rolaforg',
+    verifyUpdateCodeSignature: false,
     target: 'nsis'
   },
-
   nsis: {
-    differentialPackage: true
+    oneClick: false,
+    differentialPackage: true,
+    createDesktopShortcut: true,
+    allowToChangeInstallationDirectory: true
   }
 }
 
@@ -45,7 +48,7 @@ module.exports = {
   asar: false,
   productName: 'System Companion',
   appId: 'com.github.romslf.system-companion',
-  artifactName: 'sc-${version}.${ext}',
+  artifactName: 'system-companion-${version}.${ext}',
   directories: {
     output: 'build'
   },
