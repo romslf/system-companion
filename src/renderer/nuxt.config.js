@@ -6,13 +6,13 @@
 
 
 module.exports = {
-  mode: 'spa', // or 'universal'
+  mode: "spa", // or 'universal'
   head: {
-    title: 'System Companion'
+    title: "System Companion"
   },
   loading: false,
   plugins: [
-    {ssr: true, src: '@/plugins/icons.js'},
+    {ssr: true, src: "@/plugins/icons.js"},
     
     
   ],
@@ -20,16 +20,16 @@ module.exports = {
     
   ],
   modules: [
-    '@nuxtjs/vuetify',
+    "@nuxtjs/vuetify",
   ],
           vuetify: {
             theme: {
               themes: {
                 light: {
-                  primary: '#1867c0',
-                  secondary: '#b0bec5',
-                  accent: '#8c9eff',
-                  error: '#b71c1c',
+                  primary: "#1867c0",
+                  secondary: "#b0bec5",
+                  accent: "#8c9eff",
+                  error: "#b71c1c",
                 },
               },
             }
