@@ -1,9 +1,14 @@
 <template>
   <div>
     <div class="title">
-      <v-icon left large>fas fa-microchip</v-icon> CPU
+      <v-icon
+        left
+        large
+      >
+        fas fa-microchip
+      </v-icon> CPU
     </div>
-    <hr />
+    <hr>
     <div class="items">
       <div class="item">
         <div class="name">
@@ -46,12 +51,12 @@
         </div>
       </div>
     </div>
-    <hr />
+    <hr>
   </div>
 </template>
 
 <script>
-const { cpu } = require('systeminformation')
+const { cpu } = require("systeminformation");
 
 export default {
   data () {
@@ -61,23 +66,23 @@ export default {
       cpuPhysicalCores: "Loading ...",
       cpuCores: "Loading ...",
       cpuSpeed: "Loading ...",
-    }
+    };
+  },
+  created () {
+      this.checkSys();
   },
   methods: {
       async checkSys () {
-        var data
-        data = await cpu()
-        this.cpuManufacturer = data.manufacturer
-        this.cpuBrand = data.brand
-        this.cpuPhysicalCores = data.physicalCores
-        this.cpuCores = data.cores
-        this.cpuSpeed = data.speedmax
+        var data;
+        data = await cpu();
+        this.cpuManufacturer = data.manufacturer;
+        this.cpuBrand = data.brand;
+        this.cpuPhysicalCores = data.physicalCores;
+        this.cpuCores = data.cores;
+        this.cpuSpeed = data.speedmax;
     }
-  },
-  created () {
-      this.checkSys()
   }
-}
+};
 </script>
 
 <style scoped>

@@ -63,12 +63,12 @@ export default {
       chrome: process.versions.chrome,
       electron: process.versions.electron,
       node: process.versions.node,
-      platform: require('os').platform(),
-      vue: require('vue/package.json').version,
-      nuxt: require('nuxt/package.json').version
-    }
+      platform: require("os").platform(),
+      vue: require("vue/package.json").version,
+      nuxt: require("nuxt/package.json").version
+    };
   }
-}
+};
 </script>
 
 <style scoped>

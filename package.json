@@ -4,7 +4,7 @@
   "description": "Multi platform system informations tool.",
   "main": "./dist/main/index.js",
   "scripts": {
-    "lint": "eslint .electron-nuxt/**/*.js src/**/*.js --fix",
+    "lint": "eslint .electron-nuxt/**/*.js src/**/*.js src/**/**/**/*.vue --fix",
     "dev": "cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "build": "cross-env-shell NODE_ENV=production && node .electron-nuxt/index.js",
     "test": "",

@@ -4,9 +4,14 @@
       <div class="e-nuxt-system-info">
         <!-- CPU Load -->
         <div class="title">
-          <v-icon left large>fas fa-microchip</v-icon>CPU Load
+          <v-icon
+            left
+            large
+          >
+            fas fa-microchip
+          </v-icon>CPU Load
         </div>
-        <hr />
+        <hr>
         <div class="items">
           <div class="item">
             <div class="name">
@@ -33,39 +38,69 @@
             </div>
           </div>
         </div>
-        <hr />
+        <hr>
         <!-- Process -->
         <div class="title">
-          <v-icon left large>fas fa-list</v-icon>Processes list <v-spacer />
+          <v-icon
+            left
+            large
+          >
+            fas fa-list
+          </v-icon>Processes list <v-spacer />
         </div>
         <div class="item">
           <div class="name">
-                Sort by:
-            <v-radio-group v-model="radio" row>
-              <v-radio label="CPU" value="cpu"></v-radio>
-              <v-radio label="MEM" value="mem"></v-radio>
-              <v-radio label="Name" value="name"></v-radio>
+            Sort by:
+            <v-radio-group
+              v-model="radio"
+              row
+            >
+              <v-radio
+                label="CPU"
+                value="cpu"
+              />
+              <v-radio
+                label="MEM"
+                value="mem"
+              />
+              <v-radio
+                label="Name"
+                value="name"
+              />
             </v-radio-group>
           </div>
         </div>
-        <v-simple-table dense fixed-header height="500px">
+        <v-simple-table
+          dense
+          fixed-header
+          height="500px"
+        >
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">Name</th>
-                <th class="text-left">CPU usage</th>
-                <th class="text-left">MEM usage</th>
+                <th class="text-left">
+                  Name
+                </th>
+                <th class="text-left">
+                  CPU usage
+                </th>
+                <th class="text-left">
+                  MEM usage
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in process" :key="item.pid">
+              <tr
+                v-for="item in process"
+                :key="item.pid"
+              >
                 <td>{{ item.name }}</td>
                 <td>{{ item.pcpu.toFixed(3) }}%</td>
                 <td>{{ item.pmem.toFixed(3) }}%</td>
               </tr>
             </tbody>
           </template>
-      </v-simple-table>
+        </v-simple-table>
       </div>
     </div>
     <!-- <div class="e-nuxt-links">
@@ -83,8 +118,8 @@
 </template>
 
 <script>
-import { remote } from 'electron'
-const { currentLoad, processes } = require('systeminformation')
+import { remote } from "electron";
+const { currentLoad, processes } = require("systeminformation");
 
 export default {
   data () {
@@ -94,36 +129,36 @@ export default {
       idleLoad: 0,
       currentLoad: 0,
       process: []
-    }
+    };
+  },
+  created() {
+    this.checkSys();
   },
   methods: {
     async checkSys() {
       var data;
       data = await processes();
-      this.process = []
+      this.process = [];
       for (let pro of data.list) {
-        this.process.push(pro)
+        this.process.push(pro);
       }
       if (this.radio === "cpu") {
-        this.process.sort(function(a, b){return b.pcpu - a.pcpu})
+        this.process.sort(function(a, b){return b.pcpu - a.pcpu;});
       } else if (this.radio === "mem") {
-        this.process.sort(function(a, b){return b.pmem - a.pmem})
+        this.process.sort(function(a, b){return b.pmem - a.pmem;});
       } else {
         this.process.sort(function(a, b){
           if(a.name < b.name) { return -1; }
           if(a.name > b.name) { return 1; }
           return 0;
-        })
+        });
       }
       data = await currentLoad();
-      this.avgLoad = data.avgload
-      this.currentLoad = data.currentload
-      this.idleLoad = data.currentload_idle
-      setTimeout(res => this.checkSys(), 2000)
+      this.avgLoad = data.avgload;
+      this.currentLoad = data.currentload;
+      this.idleLoad = data.currentload_idle;
+      setTimeout(res => this.checkSys(), 2000);
     }
-  },
-  created() {
-    this.checkSys()
   }
-}
+};
 </script>

@@ -34,10 +34,10 @@
 export default {
   data () {
     return {
-      version: require('electron').remote.app.getVersion()
-    }
+      version: require("electron").remote.app.getVersion()
+    };
   }
-}
+};
 </script>
 
 <style scoped>

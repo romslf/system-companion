@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import { remote } from 'electron'
-import CpuInformation from '@/components/CpuInformation.vue'
-import GpuInformation from '@/components/GpuInformation.vue'
-import RamInformation from '@/components/RamInformation.vue'
+import { remote } from "electron";
+import CpuInformation from "@/components/CpuInformation.vue";
+import GpuInformation from "@/components/GpuInformation.vue";
+import RamInformation from "@/components/RamInformation.vue";
 
 export default {
   components: {
@@ -35,15 +35,15 @@ export default {
   },
   data () {
     return {
-      externalContent: ''
-    }
+      externalContent: ""
+    };
   },
   methods: {
     openURL (url) {
-      remote.shell.openExternal(url)
+      remote.shell.openExternal(url);
     }
   }
-}
+};
 </script>
 
 <style>

@@ -1,9 +1,14 @@
 <template>
   <div>
     <div class="title">
-      <v-icon left large>fas fa-memory</v-icon> Ram
+      <v-icon
+        left
+        large
+      >
+        fas fa-memory
+      </v-icon> Ram
     </div>
-    <hr />
+    <hr>
     <div class="items">
       <div class="item">
         <div class="name">
@@ -30,12 +35,12 @@
         </div>
       </div>
     </div>
-    <hr />
+    <hr>
   </div>
 </template>
 
 <script>
-const { mem } = require('systeminformation')
+const { mem } = require("systeminformation");
 
 export default {
   data () {
@@ -43,21 +48,21 @@ export default {
       ramTotal: "Loading ...",
       ramFree: "Loading ...",
       ramUsed: "Loading ..."
-    }
+    };
+  },
+  created () {
+      this.checkSys();
   },
   methods: {
       async checkSys () {
-        var data
-        data = await mem()
-        this.ramTotal = (data.total / 1000000000).toFixed(2) + " Go"
-        this.ramFree = (data.free / 1000000000).toFixed(2) + " Go"
-        this.ramUsed = (data.used / 1000000000).toFixed(2) + " Go"
+        var data;
+        data = await mem();
+        this.ramTotal = (data.total / 1000000000).toFixed(2) + " Go";
+        this.ramFree = (data.free / 1000000000).toFixed(2) + " Go";
+        this.ramUsed = (data.used / 1000000000).toFixed(2) + " Go";
     }
-  },
-  created () {
-      this.checkSys()
   }
-}
+};
 </script>
 
 <style scoped>
