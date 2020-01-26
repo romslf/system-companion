@@ -1,4 +1,5 @@
 /* globals INCLUDE_RESOURCES_PATH */
+/* eslint-disable */
 import { app } from "electron";
 
 /**

@@ -31,7 +31,7 @@
           Max frequency:
         </div>
         <div class="value">
-          {{ cpuSpeed }}
+          {{ cpuSpeed }} Ghz
         </div>
       </div>
       <div class="item">

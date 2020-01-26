@@ -15,7 +15,7 @@
           Total:
         </div>
         <div class="value">
-          {{ ramTotal }}
+          {{ ramTotal }} Go
         </div>
       </div>
       <div class="item">
@@ -23,7 +23,7 @@
           Free:
         </div>
         <div class="value">
-          {{ ramFree }}
+          {{ ramFree }} Go
         </div>
       </div>
       <div class="item">
@@ -31,7 +31,7 @@
           Used:
         </div>
         <div class="value">
-          {{ ramUsed }}
+          {{ ramUsed }} Go
         </div>
       </div>
     </div>
@@ -57,9 +57,9 @@ export default {
       async checkSys () {
         var data;
         data = await mem();
-        this.ramTotal = (data.total / 1000000000).toFixed(2) + " Go";
-        this.ramFree = (data.free / 1000000000).toFixed(2) + " Go";
-        this.ramUsed = (data.used / 1000000000).toFixed(2) + " Go";
+        this.ramTotal = (data.total / 1073741824).toFixed(2);
+        this.ramFree = (data.free / 1073741824).toFixed(2);
+        this.ramUsed = (data.used / 1073741824).toFixed(2);
     }
   }
 };
