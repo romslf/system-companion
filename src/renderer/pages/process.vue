@@ -46,7 +46,8 @@
             large
           >
             fas fa-list
-          </v-icon>Processes list <v-spacer />
+          </v-icon>Processes list
+          <v-spacer />
         </div>
         <div class="item">
           <div class="name">
@@ -93,10 +94,11 @@
               <tr
                 v-for="item in process"
                 :key="item.pid"
+                @click="askKill(item.pid, item.name)"
               >
                 <td>{{ item.name }}</td>
-                <td>{{ item.pcpu.toFixed(3) }}%</td>
-                <td>{{ item.pmem.toFixed(3) }}%</td>
+                <td>{{ item.pcpu.toFixed(2) }}%</td>
+                <td>{{ item.pmem.toFixed(2) }}%</td>
               </tr>
             </tbody>
           </template>
@@ -113,18 +115,18 @@
       <div class="e-nuxt-button" @click="openURL('https://electronjs.org/docs')">
         Electron.js
       </div>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
 <script>
-import { remote } from "electron";
+const dialog = require("electron").remote.dialog;
 const { currentLoad, processes } = require("systeminformation");
 
 export default {
-  data () {
+  data() {
     return {
-      radio: "name",
+      radio: "cpu",
       avgLoad: 0,
       idleLoad: 0,
       currentLoad: 0,
@@ -139,17 +141,24 @@ export default {
       var data;
       data = await processes();
       this.process = [];
-      for (let pro of data.list) {
-        this.process.push(pro);
-      }
+      this.process = data.list;
+      this.process = this.process.filter(el => el.name !== "System Idle Process" );
       if (this.radio === "cpu") {
-        this.process.sort(function(a, b){return b.pcpu - a.pcpu;});
+        this.process.sort(function(a, b) {
+          return b.pcpu - a.pcpu;
+        });
       } else if (this.radio === "mem") {
-        this.process.sort(function(a, b){return b.pmem - a.pmem;});
+        this.process.sort(function(a, b) {
+          return b.pmem - a.pmem;
+        });
       } else {
-        this.process.sort(function(a, b){
-          if(a.name < b.name) { return -1; }
-          if(a.name > b.name) { return 1; }
+        this.process.sort(function(a, b) {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
           return 0;
         });
       }
@@ -157,7 +166,53 @@ export default {
       this.avgLoad = data.avgload;
       this.currentLoad = data.currentload;
       this.idleLoad = data.currentload_idle;
-      setTimeout(res => this.checkSys(), 2000);
+      setTimeout(() => this.checkSys(), 2000);
+    },
+    askKill(pid, name) {
+      if (name.includes("System Companion")) {
+        dialog.showMessageBox(null, {
+          type: "info",
+          message: "Sorry you can't kill System Companion from here."
+        });
+      } else {
+        dialog.showMessageBox(
+          null,
+          {
+            type: "question",
+            title: "Process kill",
+            message: `Do you want to kill ${name} ?`,
+            buttons: ["No", "Yes"]
+          },
+          response => {
+            if (response === 1) {
+              this.processKill(pid, name);
+            }
+          }
+        );
+      }
+    },
+    processKill(pid, name) {
+      try {
+        var done = process.kill(pid);
+        if (done >= 0) {
+          dialog.showMessageBox(null, {
+            type: "info",
+            title: "Process kill",
+            message: `${name} as been killed`
+          });
+        } else {
+          this.cantKill(name);
+        }
+      } catch (error) {
+        this.cantKill(name);
+      }
+    },
+    cantKill(name) {
+      dialog.showMessageBox(null, {
+        type: "info",
+        title: "Process kill",
+        message: `${name} can't be killed, try run System Companion as Admin`
+      });
     }
   }
 };

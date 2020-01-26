@@ -35,7 +35,7 @@
           VRAM:
         </div>
         <div class="value">
-          {{ vram }}
+          {{ (vram / 1024).toFixed() }} Go
         </div>
       </div>
       <hr>
@@ -51,7 +51,7 @@
     </div>
     <hr>
     <div
-      v-for="{ vendor, model, connection, resolution, refreshRate } in displays"
+      v-for="{ vendor, model, connection, resolution } in displays"
       class="items"
     >
       <!-- <div class="item">

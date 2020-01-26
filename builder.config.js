@@ -8,7 +8,7 @@ const windowsOS = {
 		target: "nsis"
 	},
 	nsis: {
-		oneClick: false,
+		oneClick: true,
 		differentialPackage: true,
 		createDesktopShortcut: true,
 		allowToChangeInstallationDirectory: false
