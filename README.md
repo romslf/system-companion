@@ -20,7 +20,7 @@ And
 - Get average, current, Idle CPU load
 - Get process list (Sort by: name, cpu, memory usage)
 - Kill processes
-- Auto-update (Only windows for now, other platforms will get a pop-up with github release)
+- Auto-update (Only windows for now, other platforms will get a pop-up with github [release](https://github.com/romslf/system-companion/releases/latest))
 
 ### Build Setup
 
