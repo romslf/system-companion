@@ -1,9 +1,17 @@
 # System Companion
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3041f7d3b2ff4d06b47f385d0cb33907)](https://www.codacy.com/manual/romslf/system-companion?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=romslf/system-companion&amp;utm_campaign=Badge_Grade) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/romslf/system-companion) ![GitHub All Releases](https://img.shields.io/github/downloads/romslf/system-companion/total)
+
+[Contributing](https://github.com/romslf/system-companion/blob/master/CONTRIBUTING.md) | 
+[License](https://github.com/romslf/system-companion/blob/master/LICENSE)
+
 > Feel free to contact me for any suggestions [rolaforg@student.le-101.fr](mailto:rolaforg@student.le-101.fr?subject=[GitHub]%20System%20Companion)
 
+[Contributing](https://github.com/romslf/system-companion/blob/master/CONTRIBUTING.md) | 
+[Code Of Conduct](https://github.com/romslf/system-companion/blob/master/CODE_OF_CONDUCT.md) | 
+[License](https://github.com/romslf/system-companion/blob/master/LICENSE)
 This repository contain a multi-platform application to get useful informations about your system and more.
 It should work on Windows, Mac, Linux (Untested for now).
+
 
 ## Features (For now, a lot in coming)
 
