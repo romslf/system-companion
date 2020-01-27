@@ -6,6 +6,8 @@
 
 > Feel free to contact me for any suggestions [rolaforg@student.le-101.fr](mailto:rolaforg@student.le-101.fr?subject=[GitHub]%20System%20Companion)
 
+## Description
+
 This repository contain a multi-platform application to get useful informations about your system and more.
 It should work on Windows, Mac, Linux (Untested for now).
 
