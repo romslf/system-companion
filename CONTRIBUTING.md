@@ -44,6 +44,9 @@ People *love* thorough bug reports. I'm not even kidding.
 
 * You can try running `npm run lint` for style unification
 
+## Code of conduct
+You must respect the [Code Of Conduct](https://github.com/romslf/system-companion/blob/master/CODE_OF_CONDUCT.md)
+
 ## License
 By contributing, you agree that your contributions will be licensed under its GNU GPLv3 License.
 
