@@ -3,7 +3,7 @@
 [Contributing](https://github.com/romslf/system-companion/blob/master/CONTRIBUTING.md) | 
 [License](https://github.com/romslf/system-companion/blob/master/LICENSE)
 
-> Feel free to contact me for any suggestions [rolaforg@student.le-101.fr](mailto:rolaforg@student.le-101.fr?subject=[GitHub]%20System%20Companion)
+> Feel free to contact me for any suggestions [rolaforg@student.42lyon.fr](mailto:rolaforg@student.le-101.fr?subject=[GitHub]%20System%20Companion)
 
 ## Description
 
