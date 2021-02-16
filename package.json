@@ -47,6 +47,6 @@
   },
   "dependencies": {
     "electron-updater": "^4.2.0",
-    "systeminformation": "^4.19.2"
+    "systeminformation": "^5.3.1"
   }
 }
