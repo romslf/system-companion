@@ -1,7 +1,14 @@
-.nuxt
-dist
-build/*
-!build/icons
+# dependencies
 node_modules
-electron-builder.yml
-rolaforg.pfx
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Mac OS
+.DS_Store

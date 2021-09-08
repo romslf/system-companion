@@ -1,9 +1,9 @@
-const ICONS_DIR = "build/icons/";
+const ICONS_DIR = "static/icons/";
 
 const windowsOS = {
 	win: {
 		icon: ICONS_DIR + "win-icon.ico",
-		publisherName: "rolaforg",
+		publisherName: "github.comm/romslf",
 		verifyUpdateCodeSignature: false,
 		target: "nsis"
 	},
@@ -25,7 +25,7 @@ const linuxOS = {
 const macOS = {
 	mac: {
 		target: "dmg",
-		icon: ICONS_DIR + "con.icns"
+		icon: ICONS_DIR + "icon.icns"
 	},
 	dmg: {
 		contents: [
@@ -53,21 +53,6 @@ module.exports = {
 		output: "build"
 	},
 	// default files: https://www.electron.build/configuration/contents
-	files: [
-		"package.json",
-		{
-			from: "dist/main/",
-			to: "dist/main/"
-		},
-		{
-			from: "dist/renderer",
-			to: "dist/renderer/"
-		},
-		{
-			from: "src/resources/",
-			to: "dist/resources/"
-		}
-	],
 	...windowsOS,
 	...linuxOS,
 	...macOS
