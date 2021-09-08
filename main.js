@@ -30,7 +30,12 @@ const path = require('path')
 const app = electron.app
 const newWin = () => {
 	win = new electron.BrowserWindow({
-		icon: path.join(__dirname, 'static/icons/win-icon.ico')
+		icon: path.join(__dirname, 'static/icons/win-icon.ico'),
+        webPreferences: {
+        	nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        }
 	})
 	win.maximize()
 	win.on('closed', () => win = null)

@@ -10,5 +10,8 @@ npm-debug.log
 # Nuxt generate
 dist
 
+# Build dir
+build
+
 # Mac OS
 .DS_Store

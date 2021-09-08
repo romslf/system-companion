@@ -7,10 +7,12 @@ export const state = () => ({
 
 export const mutations = {
     setPRT(state, time) {
-      state['process_refresh_time'] = time;
-      Store.set('process_refresh_time', time);
+		console.log("Settings updated !")
+    	state['process_refresh_time'] = time;
+    	Store.set('process_refresh_time', time);
     },
 	setDRT(state, time) {
+		console.log("Settings updated !")
 		state['docker_refresh_time'] = time;
 		Store.set('docker_refresh_time', time);
 	}
