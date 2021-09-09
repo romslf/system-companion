@@ -187,7 +187,7 @@ export default {
     },
     askKill (name, pid) {
       this.$buefy.dialog.confirm({
-        title: 'Privacy Politics',
+        title: 'Are you sure ?',
         message: `Would you like to kill ${name} process ?`,
         cancelText: 'No',
         confirmText: 'Yes',
