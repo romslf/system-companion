@@ -78,11 +78,6 @@
 
           <template slot="detail" slot-scope="props">
             <article class="media">
-              <figure class="media-left">
-                <p class="image is-64x64">
-                  <img src="/static/img/placeholder-128x128.png">
-                </p>
-              </figure>
               <div class="card center">
                 <div class="card-header">
                   <div class="card-header-title">
