@@ -51,8 +51,11 @@
         </b-menu>
       </div>
     </b-sidebar>
+	<div class="columns is-vcentered">
     <b-button @click="open = true" icon-left="bars"></b-button>
-    <b-button @click="open_settings = true" icon-left="cog" class="is-pulled-right"></b-button>
+	<img :src="require('@/assets/isolated-layout.svg')" style="width: 60px; height: 60px; margin-left: auto; margin-right: auto; display:block;"/>
+    <b-button @click="open_settings = true" icon-left="cog" class="is-pulled-left"></b-button>
+	</div>
   </section>
         </div>
 		

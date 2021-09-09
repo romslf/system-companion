@@ -118,9 +118,6 @@
                     Starting command: {{ props.row.command }}
                   </ul>
                 </div>
-                <footer class="card-footer">
-                    <b-button class="is-danger center" outlined rounded icon-right="trash">Kill</b-button>
-                </footer>
               </div>
             </article>
           </template>

@@ -1,6 +1,7 @@
 /*
 **  Nuxt
 */
+const { autoUpdater } = require("electron-updater");
 const http = require('http')
 const { Nuxt, Builder } = require('nuxt')
 let config = require('./nuxt.config.js')
@@ -29,15 +30,55 @@ const electron = require('electron')
 const path = require('path')
 const app = electron.app
 const newWin = () => {
+	const options = {
+		type: "question",
+		buttons: ["No, thanks", "Yes, please"],
+		defaultId: 1,
+		title: "Question",
+		message: "Do you want to do this?"
+	  };
+  
+	  autoUpdater.on("update-available", () => {
+		if (process.platform === "win32" || process.platform === "win64") {
+		  options.title = "Update";
+		  options.message = "Update available, download it ?";
+		  dialog.showMessageBox(null, options, (response) => {
+			if (response === 1) {
+			  autoUpdater.downloadUpdate();
+			  autoUpdater.on("update-downloaded", () => {
+				autoUpdater.quitAndInstall();
+			  });
+			}
+		  });
+		} else {
+		  options.title = "Update";
+		  options.message = "Update available, download it ?";
+		  dialog.showMessageBox(null, options, (response) => {
+			if (response === 1) {
+			  let child = new BrowserWindow({ modal: false, show: false });
+			  child.loadURL("https://github.com/romslf/system-companion/releases/latest");
+			  child.once("ready-to-show", () => {
+				child.show();
+			  });
+			}
+		  });
+		}
+	  });
+  
+	  autoUpdater.on("error", (err) => {
+		console.log(err);
+	  });
+  
 	win = new electron.BrowserWindow({
 		icon: path.join(__dirname, 'static/icons/win-icon.ico'),
         webPreferences: {
-        	nodeIntegration: true,
+            nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true,
-        }
+        },
+		autoHideMenuBar: true
 	})
-	win.maximize()
+	//win.maximize()
 	win.on('closed', () => win = null)
 	if (config.dev) {
 		// Install vue dev tool and open chrome dev tools
@@ -54,6 +95,10 @@ const newWin = () => {
 		}
 		pollServer()
 	} else { return win.loadURL(_NUXT_URL_) }
+	//this._create();
+	autoUpdater.autoDownload = false;
+	console.log("Checking updates ...")
+	autoUpdater.checkForUpdates();
 }
 app.on('ready', newWin)
 app.on('window-all-closed', () => app.quit())

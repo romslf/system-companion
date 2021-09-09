@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Nuxt + Electron",
   "author": "romslf@pm.me",
-  "private": true,
+  "private": false,
+  "repository": {
+	"type" : "git",
+	"url" : "https://github.com/romslf/system-companion.git"
+  },
   "main": "main.js",
   "build": {
     "appId": "",
@@ -17,7 +21,8 @@
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=DEV electron .",
-    "build": "nuxt build && electron-builder --config builder.config.js",
+    "build": "nuxt build && electron-builder --config builder.config.js --publish never",
+	"deploy": "nuxt build && electron-builder --config builder.config.js --publish always",
     "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -25,6 +30,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "buefy": "^0.9.10",
     "electron-data-storage": "^1.1.2",
+    "electron-updater": "^4.3.9",
     "node-sass": "^6.0.1",
     "nuxt": "^1.4.0",
     "sass": "^1.39.0",
