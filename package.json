@@ -31,7 +31,7 @@
     "buefy": "^0.9.10",
     "electron-data-storage": "^1.1.2",
     "electron-updater": "^4.3.9",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^1.4.0",
     "sass": "^1.39.0",
     "systeminformation": "^5.8.7"
