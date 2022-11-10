@@ -39,7 +39,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "cross-env": "^5.1.4",
-    "electron": "15.5.5",
+    "electron": "18.3.7",
     "electron-builder": "^20.8.1",
     "electron-devtools-installer": "^2.2.3",
     "eslint": "^4.15.0",
